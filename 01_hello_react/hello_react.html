@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello-react</title>
+    <style>
+        .title {
+            background-color: brown;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="test">
+
+</div>
+
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+<!--    此处一定要写 Babel -->
+<script type="text/babel">
+    // 创建虚拟DOM
+    // babel 语句不要加引号
+    // const V_DOM = <h1>Hello,React</h1>
+    const id = 'id';
+    const msg = 'Hello,World';
+    const V_DOM = (
+        <div>
+            <h1 className="title" id={id}>
+                <span style={{color: 'white'}}>{msg.toLowerCase()}</span>
+            </h1>
+            <label>
+                <input type="text"/>
+            </label>
+        </div>
+    )
+    // const V_DOM = React.createElement('h1', {id:'title'}, 'Hello,React')
+    //渲染虚拟 DOM 到页面
+    ReactDOM.render(V_DOM, document.getElementById("test"))
+
+    console.log('虚拟DOM', V_DOM);
+    console.log(typeof V_DOM);
+    console.log(V_DOM instanceof Object)
+    /*
+    关于虚拟 DOM
+        1.本质是 Object 类型的对象
+        2.虚拟 DOM 比较 '轻',真实 DOM 比较重,因为虚拟 DOM 是 React 自己在用
+        3.虚拟 DOM 运行时会被转换为真实 DOM
+    * */
+</script>
+</body>
+</html>

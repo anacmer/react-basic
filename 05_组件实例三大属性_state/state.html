@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class Weather extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {isHot: true, wind: '微风'}
+            // 解决changeWeather中this的指向问题
+            this.changeWeather = this.changeWeather.bind(this)
+        }
+
+        changeWeather() {
+            // 严重注意：状态不可直接更改，要借助内置API更改
+            // this.state.isHot = !this.state.isHot;
+            this.setState({isHot: !this.state.isHot});
+            console.log('此处修改isHot的值');
+        }
+
+        render() {
+            console.log(this)
+            const {isHot, wind} = this.state;
+            return <h2 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}, {wind}</h2>
+        }
+    }
+
+
+    ReactDOM.render(<Weather/>, document.getElementById('test'));
+</script>
+</body>
+</html>

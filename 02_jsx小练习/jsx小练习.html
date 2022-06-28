@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="jsx_practice">
+
+</div>
+
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+    const data = ['Angular', 'React', 'Vue'];
+    const V_DOM = (
+        <div>
+            <h2>前端JS框架列表</h2>
+            <ul>
+                {data.map((value) => {
+                    return <li key={value}>{value}</li>
+                })}
+            </ul>
+        </div>
+    )
+
+    ReactDOM.render(V_DOM, document.getElementById("jsx_practice"))
+</script>
+</body>
+</html>
