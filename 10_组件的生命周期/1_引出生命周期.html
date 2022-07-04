@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+</body>
+</html>
+
+<script type="text/babel">
+
+    class Life extends React.Component {
+
+        state = {opacity: 1}
+
+        dead = () => {
+            // clearInterval(this.timer)
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        }
+
+        componentDidMount() {
+            this.timer = setInterval(() => {
+                let {opacity} = this.state
+                opacity -= 0.1
+                if (opacity <= 0) opacity = 1;
+                this.setState({opacity})
+            }, 200)
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.timer)
+        }
+
+        render() {
+            return (
+                <div>
+                    <h1 style={{opacity: this.state.opacity}}>React学不会，不活了</h1>
+                    <button onClick={this.dead}>不活了</button>
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(<Life/>, document.getElementById('test'));
+</script>
